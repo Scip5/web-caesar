@@ -11,7 +11,7 @@ form = """
     <head>
             <style>
                 
-                form {
+                form {{
                     
                     background-color: #eee;
                     padding: 20px;
@@ -19,12 +19,12 @@ form = """
                     width: 540px;
                     font: 16px sans-serif;
                     border-radius: 10px;
-                }
-                textarea {
+                }}
+                textarea {{
                     margin: 10px 0;
                     width: 540px;
                     height: 120px;
-                }
+                }}
             </style>
         </head>
         <body>
@@ -34,7 +34,7 @@ form = """
                 </label>
                 <p>
                 </p>
-                <textarea name="text"></textarea>
+                <textarea name="text">{0}</textarea>
                 <br>
                 <input type="submit" />            
             </form>
@@ -48,12 +48,11 @@ def encrypt():
     realNum = int(num)
     string = request.form['text']
     newString = rotate_string(string, realNum)
-    return "<h1>"+ newString +"</h1>"
+    return form.format(newString) 
 
 @app.route("/")
 def index():
-    return form
-
+    return form.format("")
 
 app.run()
 
